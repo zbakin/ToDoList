@@ -21,11 +21,11 @@ int main() {
         std::cout << "Type a description of the task" << std::endl;
         std::getline(std::cin, description);
 
-        Task exampleTask{name, description};
-        exampleTask.setDueDate("14 January 2024");
-        exampleTask.showTask();
-        myList.addTask(0, exampleTask);
-        std::cout << "Task " << exampleTask.getTaskName() << " was added to the list" << std::endl;
+        std::unique_ptr<Task> exampleTask = std::make_unique<Task>(name, description);
+        exampleTask->setDueDate("14 January 2024");
+        exampleTask->showTask();
+        myList.addTask(0, std::move(exampleTask));
+
         sleep(2);
     }
 
