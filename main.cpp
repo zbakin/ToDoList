@@ -12,6 +12,7 @@ int main() {
 
     Task exampleEmptyTask;
     Task exampleTask{name, description};
+    exampleTask.setDueDate("14 January 2024");
     exampleTask.showTask();
     return 0;
 }
