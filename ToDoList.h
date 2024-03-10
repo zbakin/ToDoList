@@ -6,8 +6,14 @@
 
 class ToDoList {
 public:
+    ToDoList() {}
+    // create list from a file
+    ToDoList(const std::string& pathToFile);
+
     size_t getSize();
     void addTask(size_t id, Task theTask);
+
+    void extractToFile(const std::string& filename);
 private:
     std::vector<Task> m_tasks{};
     std::queue<Task> queueOfTasks{};

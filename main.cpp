@@ -1,6 +1,6 @@
 #include <iostream>
 #include <unistd.h>
-#include <signal.h>
+
 #include "Task.h"
 #include "ToDoList.h"
 
@@ -13,7 +13,7 @@ void signal_exit_handler(int signum) {
 int main() {
 
     signal(SIGINT, signal_exit_handler);
-
+    ToDoList myList;
     while(true) {
         std::string name, description;
         std::cout << "Type a name of the task" << std::endl;
@@ -24,8 +24,6 @@ int main() {
         Task exampleTask{name, description};
         exampleTask.setDueDate("14 January 2024");
         exampleTask.showTask();
-
-        ToDoList myList;
         myList.addTask(0, exampleTask);
         std::cout << "Task " << exampleTask.getTaskName() << " was added to the list" << std::endl;
         sleep(2);

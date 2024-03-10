@@ -6,6 +6,13 @@ size_t ToDoList::getSize() {
 }
 
 void ToDoList::addTask(size_t id, Task theTask) {
+    ++m_size;
     theTask.setTaskId(id);
-    m_tasks.emplace_back(theTask);
+    m_tasks.emplace_back(std::move(theTask));
+}
+
+void ToDoList::extractToFile(const std::string& filename) {
+    if (!m_tasks.empty()) {
+        // TODO: implement
+    }
 }
