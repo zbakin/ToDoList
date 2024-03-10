@@ -5,4 +5,5 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(ToDoList main.cpp
         Task.cpp
-        ToDoList.h)
+        ToDoList.h
+        ToDoList.cpp)

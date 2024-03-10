@@ -9,14 +9,19 @@ public:
     explicit Task(std::string name, std::string desc) : m_name(std::move(name)), m_description(std::move(desc)) {}
     void showTask();
 
-    void setDueDate(std::string date) { m_dueDate = std::move(date); }
+    void setTaskName(std::string name)         { m_name = std::move(name); }
+    void setTaskId(size_t id)                  { m_id = id; }
+    void setDueDate(std::string date)          { m_dueDate = std::move(date); }
 
-    std::string getDueDate() { return m_dueDate; }
-    bool isCompleted() { return completed; }
+    std::string getTaskName()     { return m_name; }
+    size_t getTaskId()            { return m_id; }
+    std::string getDueDate()      { return m_dueDate; }
+    bool isComplete()             { return completed; }
 private:
     std::string m_description{"EMPTY TASK"};
     std::string m_name{"noName"};
     std::string m_dueDate{"noDueDate"};
+    size_t m_id{};
     bool completed {false};
 };
 

@@ -1,21 +1,35 @@
 #include <iostream>
+#include <unistd.h>
+#include <signal.h>
 #include "Task.h"
 #include "ToDoList.h"
 
+void signal_exit_handler(int signum) {
+    std::cout << "Caught signal " << signum << std::endl;
+    // Terminate program
+    exit(signum);
+}
+
 int main() {
-    std::string name, description;
 
-    std::cout << "Type a name of the task" << std::endl;
-    std::getline(std::cin, name);
-    std::cout << "Type a description of the task" << std::endl;
-    std::getline(std::cin, description);
+    signal(SIGINT, signal_exit_handler);
 
-    Task exampleEmptyTask;
-    Task exampleTask{name, description};
-    exampleTask.setDueDate("14 January 2024");
-    exampleTask.showTask();
+    while(true) {
+        std::string name, description;
+        std::cout << "Type a name of the task" << std::endl;
+        std::getline(std::cin, name);
+        std::cout << "Type a description of the task" << std::endl;
+        std::getline(std::cin, description);
 
+        Task exampleTask{name, description};
+        exampleTask.setDueDate("14 January 2024");
+        exampleTask.showTask();
 
-    ToDoList mylist;
-    return 0;
+        ToDoList myList;
+        myList.addTask(0, exampleTask);
+        std::cout << "Task " << exampleTask.getTaskName() << " was added to the list" << std::endl;
+        sleep(2);
+    }
+
+    return EXIT_SUCCESS;
 }
