@@ -6,7 +6,8 @@
 class Task {
 public:
     Task() = default;
-    explicit Task(std::string name, std::string desc) : m_name(std::move(name)), m_description(std::move(desc)) {}
+    explicit Task(size_t id, std::string name, std::string desc) :
+                  m_id(id), m_name(std::move(name)), m_description(std::move(desc)) {}
     void showTask();
 
     void setTaskName(std::string name)         { m_name = std::move(name); }

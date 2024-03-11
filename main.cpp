@@ -21,7 +21,7 @@ int main() {
         std::cout << "Type a description of the task" << std::endl;
         std::getline(std::cin, description);
 
-        std::unique_ptr<Task> exampleTask = std::make_unique<Task>(name, description);
+        std::unique_ptr<Task> exampleTask = std::make_unique<Task>(0, name, description);
         exampleTask->setDueDate("14 January 2024");
         exampleTask->showTask();
         myList.addTask(0, std::move(exampleTask));
