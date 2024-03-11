@@ -6,7 +6,7 @@ size_t ToDoList::getSize() {
 }
 
 void ToDoList::addTask(size_t id, std::unique_ptr<Task> theTask) {
-    std::cout << "Adding " << theTask->getTaskName() << " to the list" << std::endl;
+    std::cout << "Adding '" << theTask->getTaskName() << "' to the ToDo list" << std::endl;
     ++m_size;
     theTask->setTaskId(id);
     m_tasks.emplace_back(std::move(theTask));

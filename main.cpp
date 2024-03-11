@@ -23,6 +23,9 @@ int main() {
 
         std::unique_ptr<Task> exampleTask = std::make_unique<Task>(0, name, description);
         exampleTask->setDueDate("14 January 2024");
+        exampleTask->setComplete();
+        exampleTask->showTask();
+        exampleTask->reOpen();
         exampleTask->showTask();
         myList.addTask(0, std::move(exampleTask));
         myList.extractToFile("tasks.txt");
