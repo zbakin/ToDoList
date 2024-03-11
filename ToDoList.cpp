@@ -14,6 +14,13 @@ void ToDoList::addTask(size_t id, std::unique_ptr<Task> theTask) {
 
 void ToDoList::extractToFile(const std::string& filename) {
     if (!m_tasks.empty()) {
-        // TODO: implement
+        std::ofstream myFile(filename);
+        if (myFile.is_open())
+        {
+            for(const auto& task : m_tasks) {
+                myFile << "Task " << task->getTaskId() << ": Name: " << task->getTaskName() << " Description: " << task->getDesc() << "\n";
+            }
+            myFile.close();
+        }
     }
 }

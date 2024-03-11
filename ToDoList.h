@@ -1,7 +1,7 @@
 #ifndef TODOLIST_TODOLIST_H
 #define TODOLIST_TODOLIST_H
 
-#include <queue>
+#include <fstream>
 #include "Task.h"
 
 class ToDoList {
@@ -16,7 +16,6 @@ public:
     void extractToFile(const std::string& filename);
 private:
     std::vector<std::unique_ptr<Task>> m_tasks{};
-    std::queue<Task> queueOfTasks{};
     size_t m_size {};
 };
 

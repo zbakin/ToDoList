@@ -25,7 +25,7 @@ int main() {
         exampleTask->setDueDate("14 January 2024");
         exampleTask->showTask();
         myList.addTask(0, std::move(exampleTask));
-
+        myList.extractToFile("tasks.txt");
         sleep(2);
     }
 
