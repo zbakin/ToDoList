@@ -1,7 +1,7 @@
 #include "Task.h"
 
 void Task::showTask() {
-    std::cout << "\n\n";
+    std::cout << "\n";
     std::cout << "Task " << m_id << ":" << std::endl;
     std::cout << m_name << std::endl;
     std::cout << m_description << std::endl;
