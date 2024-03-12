@@ -11,26 +11,9 @@ public:
     ~Task() { std::cout << "Calling destructor" << std::endl; }
 
     // copy
-    Task(const Task& other) {
-        std::cout << "Calling copy constructor" << std::endl;
-        m_description = other.m_description;
-        m_name = other.m_name;
-        m_id = other.m_id;
-        m_dueDate = other.m_dueDate;
-        m_completed = other.m_completed;
-    }
+    Task(const Task& other);
     // copy assignment
-    Task& operator=(const Task& other) {
-        if(this != &other) {
-            std::cout << "Calling copy assignment operator" << std::endl;
-            m_description = other.m_description;
-            m_name = other.m_name;
-            m_id = other.m_id;
-            m_dueDate = other.m_dueDate;
-            m_completed = other.m_completed;
-        }
-        return *this;
-    }
+    Task& operator=(const Task& other);
 
 
     void showTask();
