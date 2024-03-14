@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "ToDoList.h"
 
 class CommandLine {
 public:
@@ -13,6 +14,10 @@ public:
     }
 
 private:
+
+    ToDoList m_list;
+    std::unique_ptr<Task> exampleTask = std::make_unique<Task>(0, "Some task", "do that and this");
+
     // Method to display available options
     void displayOptions() {
         std::cout << "Options:\n";
@@ -27,7 +32,11 @@ private:
     // Method to get user input as an integer
     int getUserInput() {
         int option;
-        std::cin >> option;
+        while (!(std::cin >> option)) {
+            std::cin.clear(); // Clear error flags
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+            std::cout << "Invalid input. Please enter a number: ";
+        }
         // Clear input buffer
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return option;
@@ -38,8 +47,8 @@ private:
         switch (option) {
             case 1:
                 // Add task command
-                std::cout << "Adding a new task...\n";
-                // Call a method to handle adding a task
+                exampleTask->showTask();
+                m_list.addTask(0, std::move(exampleTask));
                 break;
             case 2:
                 // Remove task command

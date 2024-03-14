@@ -1,7 +1,4 @@
 #include <iostream>
-#include <unistd.h>
-
-#include "Task.h"
 #include "ToDoList.h"
 #include "CommandLine.h"
 
