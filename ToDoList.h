@@ -11,9 +11,11 @@ public:
     ToDoList(const std::string& pathToFile);
 
     size_t getSize();
-    void addTask(size_t id, std::unique_ptr<Task> theTask);
+    void addTask(std::unique_ptr<Task> theTask);
 
     void extractToFile(const std::string& filename);
+
+    void showAllTasks();
 private:
     std::vector<std::unique_ptr<Task>> m_tasks{};
     size_t m_size {};

@@ -5,10 +5,9 @@ size_t ToDoList::getSize() {
     return m_size;
 }
 
-void ToDoList::addTask(size_t id, std::unique_ptr<Task> theTask) {
+void ToDoList::addTask(std::unique_ptr<Task> theTask) {
     std::cout << "Adding '" << theTask->getTaskName() << "' to the ToDo list" << std::endl;
-    ++m_size;
-    theTask->setTaskId(id);
+    theTask->setTaskId(m_size++);
     m_tasks.emplace_back(std::move(theTask));
 }
 
@@ -22,5 +21,11 @@ void ToDoList::extractToFile(const std::string& filename) {
             }
             myFile.close();
         }
+    }
+}
+
+void ToDoList::showAllTasks() {
+    for(auto& task : m_tasks) {
+        task->showTask();
     }
 }

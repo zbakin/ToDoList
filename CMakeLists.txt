@@ -7,4 +7,4 @@ add_executable(ToDoList main.cpp
         Task.cpp
         ToDoList.h
         ToDoList.cpp
-        CommandLine.cpp)
+)
