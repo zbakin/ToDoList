@@ -15,27 +15,25 @@ public:
     // copy assignment
     Task& operator=(const Task& other);
 
+    void showTask() const;
 
-    void showTask();
+    void setTaskId(size_t id)               { m_id = id; }
+    void setTaskName(std::string name)      { m_name = std::move(name); }
+    void setDesc(std::string desc)          { m_description = std::move(desc); }
+    void setDueDate(std::string date)       { m_dueDate = std::move(date); }
+    void setStatus(bool complete)           { m_status = complete; }
 
-    void setTaskId(size_t id)                  { m_id = id; }
-    void setTaskName(std::string name)         { m_name = std::move(name); }
-    void setDesc(std::string desc)             { m_description = std::move(desc); }
-    void setDueDate(std::string date)          { m_dueDate = std::move(date); }
-    void setComplete()                         { m_completed = true; }
-    void reOpen()                              { m_completed = false; }
-
-    size_t getTaskId()            { return m_id; }
-    std::string getTaskName()     { return m_name; }
-    std::string getDesc()         { return m_description; }
-    std::string getDueDate()      { return m_dueDate; }
-    bool isComplete()             { return m_completed; }
+    inline size_t getTaskId() const         { return m_id; }
+    inline std::string getTaskName() const  { return m_name; }
+    inline std::string getDesc() const      { return m_description; }
+    inline std::string getDueDate() const   { return m_dueDate; }
+    inline std::string getStatus() const    { return m_status ? "COMPLETED" : "NOT COMPLETED"; }
 private:
     std::string m_description{"EMPTY TASK"};
     std::string m_name{"noName"};
     std::string m_dueDate{"noDueDate"};
     size_t m_id{};
-    bool m_completed {false};
+    bool m_status {false};
 };
 
 

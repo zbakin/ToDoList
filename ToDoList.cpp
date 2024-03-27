@@ -11,15 +11,20 @@ void ToDoList::addTask(std::unique_ptr<Task> theTask) {
     m_tasks.emplace_back(std::move(theTask));
 }
 
-void ToDoList::extractToFile(const std::string& filename) {
+void ToDoList::extractToCSV(const std::string& filename) const {
     if (!m_tasks.empty()) {
         std::ofstream myFile(filename);
-        if (myFile.is_open())
-        {
+        if (myFile.is_open()) {
+            // Add header
+            myFile << "ID,Task Name,Description,Status\n";
+            // Add Tasks
             for(const auto& task : m_tasks) {
-                myFile << "Task " << task->getTaskId() << ": Name: " << task->getTaskName() << " Description: " << task->getDesc() << "\n";
+                myFile << task->getTaskId() << "," << task->getTaskName() << "," <<
+                task->getDesc() << "," << task->getStatus() << "\n";
             }
             myFile.close();
+        } else {
+            std::cerr << "Unable to open file for writing" << std::endl;
         }
     }
 }
