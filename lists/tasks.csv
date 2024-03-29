@@ -1,0 +1,6 @@
+ID,Task Name,Description,Status
+0,Task 1,Prepare the tasks.csv file,COMPLETED
+1,Task 2,Write a function which extracts information from tasks.csv file and creates a ToDoList object,NOT COMPLETED
+2,Task 3,Test and commit changes,NOT COMPLETED
+3,Task 4,Write a function that adds tasks and locks the ToDoList object and file while writing to them,NOT COMPLETED
+4,Task 5,Test and commit changes,NOT COMPLETED
