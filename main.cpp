@@ -25,34 +25,15 @@ static void usage()
     std::cerr << "Type 'ToDoList command --help' to see the syntax of 'command'." << std::endl;
 }
 
-int main() {
-
-    signal(SIGINT, signal_exit_handler);
-    ToDoList myList;
-    int countInput = 2;
-
-    usage();
-    // Enter tasks step
-    while(countInput) {
-        --countInput;
-        std::string name, description;
-        std::cout << "Type a name of the task" << std::endl;
-        std::getline(std::cin, name);
-        std::cout << "Type a description of the task" << std::endl;
-        std::getline(std::cin, description);
-
-        std::unique_ptr<Task> exampleTask = std::make_unique<Task>(0, name, description);
-        exampleTask->setDueDate("14 January 2024");
-        myList.addTask(std::move(exampleTask));
-        myList.showAllTasks();
-        myList.extractToCSV("tasks.csv");
-        sleep(1);
+int main(int argc, char* argv[]) {
+    if (argc != 2) { // Check if exactly one argument (file path) is provided
+        std::cerr << "Usage: " << argv[0] << " <file_path>" << std::endl;
+        return EXIT_FAILURE;
     }
+    signal(SIGINT, signal_exit_handler);
+    ToDoList myList(argv[1]);
 
-//    std::unique_ptr<Task> task1 = myList.getTask(0);
-//    task1->setStatus(true); // means complete
-//
-//    myList.extractToCSV("tasks.csv");
+    myList.showAllTasks();
 
     return EXIT_SUCCESS;
 }
