@@ -6,8 +6,8 @@
 class Task {
 public:
     Task() = default;
-    explicit Task(size_t id, std::string name, std::string desc) :
-                  m_id(id), m_name(std::move(name)), m_description(std::move(desc)) {}
+    explicit Task(size_t id, std::string name, std::string desc, bool status) :
+                  m_id(id), m_name(std::move(name)), m_description(std::move(desc)), m_status(status) {}
     ~Task() { std::cout << "Calling destructor" << std::endl; }
 
     // copy

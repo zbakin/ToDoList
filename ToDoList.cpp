@@ -5,13 +5,13 @@ ToDoList::ToDoList(const std::string& pathToFile) {
     if (csvFile.is_open()) {
         std::string line;
         while(getline(csvFile, line)) {
-            std::cout << line << std::endl;
+            if(line.starts_with("ID")) continue;
+            addTask(line);
         }
         csvFile.close();
     } else {
         std::cerr << "Unable to open file for writing" << std::endl;
     }
-    m_tasks.emplace_back();
 }
 
 size_t ToDoList::getSize() {
@@ -23,6 +23,23 @@ void ToDoList::addTask(std::unique_ptr<Task> theTask) {
     std::cout << "Adding '" << theTask->getTaskName() << "' to the ToDo list" << std::endl;
     theTask->setTaskId(m_size++);
     m_tasks.emplace_back(std::move(theTask));
+}
+
+void ToDoList::addTask(const std::string& task) {
+    static const std::unordered_map<std::string, bool> statusMap = {
+            { "COMPLETED",     true  },
+            { "NOT COMPLETED", false }
+    };
+    std::string data;
+    std::vector<std::string> task_details{};
+    std::stringstream ss(task);
+    while(getline(ss, data, ',')) {
+        task_details.emplace_back(data);
+    }
+    std::unique_ptr<Task> newTask =
+            std::make_unique<Task>(m_size, task_details[1], task_details[2], statusMap.at(task_details[3]));
+    m_tasks.emplace_back(std::move(newTask));
+    ++m_size;
 }
 
 void ToDoList::extractToCSV(const std::string& filename) const {

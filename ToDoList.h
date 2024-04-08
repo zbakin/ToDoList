@@ -2,6 +2,7 @@
 #define TODOLIST_TODOLIST_H
 
 #include <fstream>
+#include <sstream>
 #include <iostream>
 #include <string>
 #include "Task.h"
@@ -18,7 +19,21 @@ public:
 
 //    std::vector<std::unique_ptr<Task>> getTasks() const { return m_tasks; }
 
-    void addTask(std::unique_ptr<Task> theTask);
+    /**
+     * @brief Adds task to m_tasks.
+     *
+     * @param task object of Task
+     * @return task is written to m_tasks
+     */
+    void addTask(std::unique_ptr<Task> task);
+
+    /**
+     * @brief Creates and adds task from a string.
+     *
+     * @param task string in a csv format.
+     * @return task is written to m_tasks
+     */
+    void addTask(const std::string& task);
 
     void extractToCSV(const std::string& filename) const;
 
