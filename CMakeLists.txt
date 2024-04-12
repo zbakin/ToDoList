@@ -8,3 +8,6 @@ add_executable(ToDoList main.cpp
         ToDoList.h
         ToDoList.cpp
 )
+
+add_subdirectory(deps/libpqxx build-pqxx)
+target_link_libraries(ToDoList PRIVATE pqxx)

@@ -1,7 +1,7 @@
 #include <iostream>
-#include <unistd.h>
-
 #include "ToDoList.h"
+#include <pqxx/pqxx>
+
 void signal_exit_handler(int signum) {
     std::cout << "Caught signal " << signum << std::endl;
     // Terminate program
@@ -33,7 +33,29 @@ int main(int argc, char* argv[]) {
     signal(SIGINT, signal_exit_handler);
     ToDoList myList(argv[1]);
 
-    myList.showAllTasks();
+//    myList.showAllTasks();
+    try {
+        pqxx::connection conn("dbname=todolist hostaddr=127.0.0.1 port=5432");
+        pqxx::work txn(conn);
+        pqxx::result result = txn.exec("SELECT * FROM zhanitodolist");
+        txn.commit();
 
+        // Print column names
+        for (int i = 0; i < result.columns(); ++i) {
+            std::cout << result.column_name(i) << "\t";
+        }
+        std::cout << std::endl;
+
+        // Print each row
+        for (const auto& row : result) {
+            for (const auto &field : row) {
+                std::cout << field.c_str() << "\t";
+            }
+            std::cout << std::endl;
+        }
+    } catch (const std::exception &e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return EXIT_FAILURE;
+    }
     return EXIT_SUCCESS;
 }
