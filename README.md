@@ -3,7 +3,7 @@
 ## Purpose
 It is used to manage tasks, created by multiple users. Data is stored in the PostgresSQL db.
 Database element is used only by 1 user at a time to update the task. 
-Other user's requests will be stored in a buffer, until the DB resourse is available to be amended.
+Other user's requests will be stored in a buffer, until the DB resourse is available to be accessed and, if needed, amended.
 
 ### Task
 Each task consists of information such as:
