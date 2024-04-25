@@ -7,6 +7,8 @@ add_executable(ToDoList main.cpp
         Task.cpp
         ToDoList.h
         ToDoList.cpp
+        Database.h
+        Database.cpp
 )
 
 add_subdirectory(deps/libpqxx build-pqxx)
