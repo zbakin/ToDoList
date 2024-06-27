@@ -38,6 +38,8 @@ public:
      */
     void addTask(const std::string& task);
 
+    Task getTask(size_t index) const;
+
     void extractToCSV(const std::string& filename) const;
 
     void showAllTasks();

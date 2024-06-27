@@ -35,6 +35,8 @@ int main(int argc, char* argv[]) {
 
     //myList.showAllTasks();
     std::unique_ptr<Database> db = std::make_unique<Database>("todolist", "127.0.0.1", "5432");
+    //db->insertTask("tasks", myList.getTask(0));
+    db->deleteTask("tasks", 7);
 
     return EXIT_SUCCESS;
 }

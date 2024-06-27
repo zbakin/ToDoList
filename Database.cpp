@@ -5,8 +5,8 @@ Database::Database(std::string dbName, std::string ip, std::string port) :
     try {
         std::string conn_parameters = "dbname=" + m_dbName + " hostaddr=" + m_hostIp + " port="
                                       + m_hostPort;
-        pqxx::connection conn(conn_parameters);
-        pqxx::work txn(conn);
+        m_connection = std::make_unique<pqxx::connection>(conn_parameters);
+        pqxx::work txn(*m_connection);
         pqxx::result result = txn.exec("SELECT * FROM tasks");
         txn.commit();
 
@@ -24,13 +24,21 @@ Database::Database(std::string dbName, std::string ip, std::string port) :
             std::cout << std::endl;
         }
 
-        // Close the connection when done
-        conn.close();
     } catch (const std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 }
 
-void Database::addTask(std::string tableName, Task newTask) {
-
+void Database::insertTask(std::string tableName, Task newTask) {
+    pqxx::work txn(*m_connection);
+    pqxx::result result = txn.exec("INSERT INTO tasks (task_name, description, deadline, is_complete) VALUES ('task3', 'Dummy task 3', '2024-07-15', false);");
+    txn.commit();
 }
+
+void Database::deleteTask(std::string tableName, size_t id) {
+    pqxx::work txn(*m_connection);
+    pqxx::result result = txn.exec(std::format("DELETE FROM tasks WHERE task_id = {};", id));
+    txn.commit();
+}
+
+

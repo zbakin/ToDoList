@@ -42,6 +42,10 @@ void ToDoList::addTask(const std::string& task) {
     ++m_size;
 }
 
+Task ToDoList::getTask(size_t index) const {
+    return *m_tasks[index];
+}
+
 void ToDoList::extractToCSV(const std::string& filename) const {
     if (!m_tasks.empty()) {
         std::ofstream csvFile(filename);
