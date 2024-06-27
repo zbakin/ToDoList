@@ -11,5 +11,5 @@ add_executable(ToDoList main.cpp
         Database.cpp
 )
 
-add_subdirectory(deps/libpqxx build-pqxx)
+add_subdirectory(lib/libpqxx build-pqxx)
 target_link_libraries(ToDoList PRIVATE pqxx)

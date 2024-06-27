@@ -7,7 +7,7 @@ Database::Database(std::string dbName, std::string ip, std::string port) :
                                       + m_hostPort;
         pqxx::connection conn(conn_parameters);
         pqxx::work txn(conn);
-        pqxx::result result = txn.exec("SELECT * FROM zhanitodolist");
+        pqxx::result result = txn.exec("SELECT * FROM tasks");
         txn.commit();
 
         // Print column names

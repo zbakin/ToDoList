@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
     signal(SIGINT, signal_exit_handler);
     ToDoList myList(argv[1]);
 
-//    myList.showAllTasks();
+    //myList.showAllTasks();
     std::unique_ptr<Database> db = std::make_unique<Database>("todolist", "127.0.0.1", "5432");
 
     return EXIT_SUCCESS;
